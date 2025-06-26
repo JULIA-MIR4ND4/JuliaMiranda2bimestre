@@ -61,28 +61,40 @@ document.getElementById('adicionarForm').addEventListener('submit', async functi
     
     const nome = document.getElementById('nomeAdd').value.trim();
     const preco = parseFloat(document.getElementById('precoAdd').value);
-    const imagem = document.getElementById('imagemAdd').value.trim();
+    const inputImagem = document.getElementById('imagemAdd');
     
     if (!nome || isNaN(preco) || preco <= 0) {
         alert('Por favor, preencha todos os campos corretamente');
         return;
     }
-    
+    if (!inputImagem.files[0]) {
+        alert('Selecione uma imagem para o produto');
+        return;
+    }
     try {
+        // Primeiro faz upload da imagem
+        const formData = new FormData();
+        formData.append('imagem', inputImagem.files[0]);
+        const uploadResp = await fetch('/api/upload-imagem', {
+            method: 'POST',
+            body: formData
+        });
+        const uploadData = await uploadResp.json();
+        if (!uploadData.success) {
+            alert(uploadData.message || 'Erro ao enviar imagem');
+            return;
+        }
+        // Depois envia os dados do produto
         const response = await fetch('/api/products', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ nome, preco, imagem })
+            body: JSON.stringify({ nome, preco, imagem: uploadData.caminho })
         });
-        
         const data = await response.json();
-        
         if (response.ok) {
             alert('Produto adicionado com sucesso!');
-            // Remove deslogar automático após salvar alterações no CRUD de produtos
-            // Basta não chamar mais deslogarAoSalvarCrud() após adicionar, editar ou excluir produto
         } else {
             alert(data.message || 'Erro ao adicionar produto');
         }
@@ -206,16 +218,29 @@ document.getElementById('editarForm').addEventListener('submit', async function(
         alert('Erro: Nenhum produto selecionado para edição');
         return;
     }
-    
     const nome = document.getElementById('nomeEdit').value.trim();
     const preco = parseFloat(document.getElementById('precoEdit').value);
-    const imagem = document.getElementById('imagemEdit').value.trim();
-    
+    const inputImagem = document.getElementById('imagemEdit');
+    let imagem = produtoEditando.imagem; // valor padrão
+    if (inputImagem.files && inputImagem.files[0]) {
+        // Se o usuário selecionou uma nova imagem, faz upload
+        const formData = new FormData();
+        formData.append('imagem', inputImagem.files[0]);
+        const uploadResp = await fetch('/api/upload-imagem', {
+            method: 'POST',
+            body: formData
+        });
+        const uploadData = await uploadResp.json();
+        if (!uploadData.success) {
+            alert(uploadData.message || 'Erro ao enviar imagem');
+            return;
+        }
+        imagem = uploadData.caminho;
+    }
     if (!nome || isNaN(preco) || preco <= 0) {
         alert('Por favor, preencha todos os campos corretamente');
         return;
     }
-    
     try {
         const response = await fetch(`/api/products/${produtoEditando.id}`, {
             method: 'PUT',
@@ -224,13 +249,9 @@ document.getElementById('editarForm').addEventListener('submit', async function(
             },
             body: JSON.stringify({ nome, preco, imagem })
         });
-        
         const data = await response.json();
-        
         if (response.ok) {
             alert('Produto atualizado com sucesso!');
-            // Remove deslogar automático após salvar alterações no CRUD de produtos
-            // Basta não chamar mais deslogarAoSalvarCrud() após adicionar, editar ou excluir produto
         } else {
             alert(data.message || 'Erro ao atualizar produto');
         }

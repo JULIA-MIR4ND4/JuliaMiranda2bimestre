@@ -36,8 +36,8 @@
           <input type="number" id="precoAdd" step="0.01" required>
         </div>
         <div class="campo">
-          <label for="imagemAdd">Link da Imagem:</label>
-          <input type="text" id="imagemAdd" required>
+          <label for="imagemAdd">Imagem do Produto:</label>
+          <input type="file" id="imagemAdd" name="imagemAdd" accept="image/*" required>
         </div>
         <button type="submit" class="btn-submit">Adicionar Produto</button>
         <button type="button" onclick="cancelarAcao()" class="btn-cancel">Cancelar</button>
@@ -82,8 +82,8 @@
             <input type="number" id="precoEdit" step="0.01" required>
           </div>
           <div class="campo">
-            <label for="imagemEdit">Link da Imagem:</label>
-            <input type="text" id="imagemEdit" required>
+            <label for="imagemEdit">Imagem do Produto:</label>
+            <input type="file" id="imagemEdit" name="imagemEdit" accept="image/*">
           </div>
           <button type="submit" class="btn-submit">Salvar Alterações</button>
           <button type="button" onclick="cancelarAcao()" class="btn-cancel">Cancelar</button>

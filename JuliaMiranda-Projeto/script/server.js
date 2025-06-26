@@ -3,6 +3,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const path = require('path');
+const multer = require('multer');
 
 const app = express();
 const PORT = 3000;
@@ -113,6 +114,17 @@ function saveUsersToCSV() {
 // Carregar dados ao iniciar
 loadProductsFromCSV();
 loadUsersFromCSV();
+
+// Configuração do multer para salvar imagens na pasta correta
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, path.join(__dirname, '../imagens'));
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + '-' + file.originalname);
+  }
+});
+const upload = multer({ storage: storage });
 
 // ROTAS DE PRODUTOS
 
@@ -289,6 +301,25 @@ app.put('/api/users/:email', (req, res) => {
     users[userIndex].tipo = tipo;
     saveUsersToCSV();
     res.json({ message: 'Tipo de usuário atualizado com sucesso', email, tipo });
+});
+
+// Endpoint para upload de imagem
+app.post('/api/upload-imagem', upload.single('imagem'), (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'Nenhuma imagem foi enviada' });
+    }
+    const nomeArquivo = req.file.filename;
+    res.json({
+      success: true,
+      message: 'Imagem enviada com sucesso!',
+      nomeArquivo: nomeArquivo,
+      caminho: `/imagens/${nomeArquivo}`
+    });
+  } catch (error) {
+    console.error('Erro no upload:', error);
+    res.status(500).json({ success: false, message: 'Erro ao fazer upload da imagem' });
+  }
 });
 
 app.listen(PORT, () => {
