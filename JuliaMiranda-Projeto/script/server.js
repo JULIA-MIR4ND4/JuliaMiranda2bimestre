@@ -260,11 +260,6 @@ app.post('/api/login', (req, res) => {
     if (user) {
         res.json({ message: 'Login realizado com sucesso', email: user.email, tipo: user.tipo });
     } else {
-        // Verifica se o email existe no sistema
-        const emailExiste = users.find(u => u.email.trim() === email);
-        if (!emailExiste) {
-            return res.status(401).json({ message: 'Usuário não cadastrado. Por favor, crie uma conta.' });
-        }
         res.status(401).json({ message: 'Email ou senha incorretos' });
     }
 });
