@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalhes do Tênis</title>
+  <link rel="stylesheet" href="./styles/style_tela2.css">
+</head>
+<body>
+  <div class="detalhes-container"> <!-- Cria um bloco principal da página, usada no css, nele estara escrito Tenis de volei -->
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>Tênis de Vôlei</h1>
+    </header>
+
+    <!-- Imagem do Tênis Selecionado, o src="" será preenchido depois no js.
+      o id="imagemTenis" serve para o js encontrar e trocar a imagem certa.-->
+    <section class="tenis-selecionado">
+      <img id="imagemTenis" src="" alt="Tênis Selecionado">
+    </section>
+
+    <!-- Seletor de Quantidade e Tamanho-->
+    <section class="quantidade-tamanho">
+      <div class="campo">
+        <label for="quantidade">Quantidade:</label>
+        <input type="number" id="quantidade" min="1" value="1">
+      </div>
+      <div class="campo">
+        <label for="tamanho">Tamanho:</label>
+        <select id="tamanho">
+          <option value="38">38</option>
+          <option value="39">39</option>
+          <option value="40">40</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="43">43</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Botões de Ação -->
+    <footer class="acoes">
+      <button onclick="voltar()">Voltar</button>
+      <button onclick="adicionarAoCarrinho()">Adicionar ao Carrinho</button>
+    </footer>
+  </div>
+
+  <script src="./script/script_tela2.js"></script> <!--conecta o js que é onde estao as funcoes.-->
+</body>
+</html>

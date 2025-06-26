@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif; /* Define que a fonte usada será a Arial*/
+    background-color: #e6f0ff; /*Cor de fundo azul bem claro para a página*/
+    display: flex; /*Ativa o modo de layout flexível */
+    justify-content: center; /*Centraliza o conteúdo na horizontal*/
+    align-items: center; /*Centraliza o conteúdo na vertical*/
+    min-height: 100vh;/* Faz o corpo ocupar 100% da altura da tela*/
+  }
+  
+  .container {
+    width: 90%; /*Ocupa 90% da largura da tela*/
+    max-width: 1200px; /*Mas nunca passa de 1200px*/
+    display: flex; /*Os itens dentro ficam empilhados*/
+    flex-direction: column; 
+    justify-content: space-between; /*Distribui o conteúdo de cima para baixo*/
+    height: 100vh; /*Ocupa toda a altura da tela*/
+    background-color: #f8faff; /*Fundo branco com azul bem claro*/
+    box-shadow: 0 0 20px rgba(0, 0, 50, 0.1); /*Cria uma sombra suave*/
+    border-radius: 10px; /*Deixa os cantos arredondados*/
+  }
+  
+  .header {
+    background-color: #001f4d; /*Azul escuro*/
+    color: white; /* Texto branco*/
+    text-align: center;/*Centraliza o texto*/
+    padding: 1rem 0; /*Espaço acima e abaixo do texto*/
+    font-size: 1.5rem;/* Tamanho grande para o título*/
+    border-top-left-radius: 10px; /* Cantos superiores arredondados*/
+    border-top-right-radius: 10px; 
+  }
+  
+  .products {
+    display: flex; /*Produtos lado a lado*/
+    justify-content: space-between; /*Espaço entre os produtos*/
+    align-items: flex-start; /*Alinhados pelo topo*/
+    padding: 1rem;/*Espaço interno*/
+    overflow-x: auto;/*Se tiver muitos produtos, pode rolar para o lado*/
+  }
+  
+  .product {
+    width: 220px; /*Tamanho da caixinha*/
+    height: 280px;
+    background-color: #003366;
+    color: white;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;/*Aparece a mãozinha*/
+    transition: transform 0.3s, background-color 0.3s;/*Deixa animações suaves*/
+  }
+  
+  .product:hover { /*Quando o mouse passa por cima do produto:*/
+    background-color: #004080;/*Cor muda para um azul mais claro*/
+    transform: scale(1.05);/*Aumenta um pouquinho*/
+  }
+  
+  .product img {
+    width: 100%;/*Ocupa toda a largura da caixinha*/
+    height: auto;/*Altura ajusta automaticamente*/
+    border-radius: 5px;
+  }
+  
+  .product h2 {
+    font-size: 1.2rem;/*Nome do produto, fonte média, com espaço abaixo*/
+    margin-bottom: 10px;/*Descrição ou preço, fonte padrão, com espaço acima*/
+  }
+  
+  .product p {
+    font-size: 1rem;
+    margin-top: 10px;
+  }
+  
+  .footer {
+    background-color: #001f4d;
+    padding: 1rem;
+    text-align: center;/*Texto e botão centralizados*/
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  
+  .footer button {
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;/*Tamanho do botão*/
+    font-size: 1rem;/*Texto do botão com bom tamanho*/
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .footer button:hover { /*quando passa o malse em cima cor fica mais escura*/
+    background-color: #004c99;
+  }
+  

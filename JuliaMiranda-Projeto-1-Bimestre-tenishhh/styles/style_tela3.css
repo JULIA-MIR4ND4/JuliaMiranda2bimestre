@@ -1,0 +1,243 @@
+
+.confirmacao-container { /*largura, altura, cor de fundo, cantos arredondados, organiza o conteudo de cima para baixo*/
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    background-color: #f0f6ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 50, 0.1);
+  }
+  
+  .lista-produtos { /*ocupa os espaço principal, organiza um em baixo do outro, adiciona rolagem na vertical*/
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow-y: auto;
+  }
+  
+  .produto-carrinho { /*coloca a imagem e as informaçoes lado a lado, centrelizadas verticalmente, com cor de fundo*/
+    display: flex;
+    align-items: center;
+    background-color: #e6f0ff;
+    border-radius: 10px;
+    padding: 10px;
+    gap: 10px;
+  }
+  
+  .produto-carrinho img {/*imagem com largura de 80 pixels, altura ajusta automaticamente, */
+    width: 80px;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .produto-info {/*organiza as informacoes em coluna, com a cor azul escuro*/
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    color: #001f4d;
+  }
+  
+  .preco-final {/*texto centralizado com uma fonte maior, em negrito e cor azul*/
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.3rem;
+    color: #001f4d;
+    font-weight: bold;
+  }
+  body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #e6f0ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.login-container {
+  width: 90%;
+  max-width: 900px;
+  background-color: #f8faff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 50, 0.1);
+  overflow: hidden;
+}
+
+.header {
+  background-color: #001f4d;
+  color: white;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.header h1 {
+  margin: 0 0 0.5rem 0;
+  font-size: 2rem;
+}
+
+.header p {
+  margin: 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+.login-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  padding: 2rem;
+  justify-content: center;
+}
+
+.form-section {
+  flex: 1;
+  min-width: 300px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-section h2 {
+  color: #001f4d;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.form-section h3 {
+  color: #001f4d;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.campo {
+  margin-bottom: 1.5rem;
+}
+
+.campo label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #001f4d;
+  font-weight: bold;
+}
+
+.campo input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.3s;
+  box-sizing: border-box;
+}
+
+.campo input:focus {
+  outline: none;
+  border-color: #0066cc;
+}
+
+.campo small {
+  color: #666;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+  display: block;
+}
+
+button {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-bottom: 1rem;
+}
+
+button:hover {
+  background-color: #004c99;
+}
+
+.manager-section {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #eee;
+}
+
+#managerBtn {
+  background-color: #cc6600;
+}
+
+#managerBtn:hover {
+  background-color: #b35400;
+}
+
+#managerLogin {
+  margin-top: 1rem;
+  padding: 1.5rem;
+  background-color: #fff8f0;
+  border-radius: 8px;
+  border: 2px solid #cc6600;
+}
+
+#managerLogin button[type="submit"] {
+  background-color: #cc6600;
+}
+
+#managerLogin button[type="submit"]:hover {
+  background-color: #b35400;
+}
+
+#managerLogin button[type="button"] {
+  background-color: #666;
+}
+
+#managerLogin button[type="button"]:hover {
+  background-color: #555;
+}
+
+.footer {
+  background-color: #001f4d;
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer button {
+  background-color: #004080;
+  max-width: 300px;
+}
+
+.footer button:hover {
+  background-color: #003366;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .login-form {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  
+  .form-section {
+    min-width: auto;
+  }
+  
+  .header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .header p {
+    font-size: 1rem;
+  }
+}

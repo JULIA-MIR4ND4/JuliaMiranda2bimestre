@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagamento</title>
+  <link rel="stylesheet" href="./styles/style_tela4.css">
+  
+</head>
+<body>
+  <div class="pagamento-container"> <!--Agrupa todos os elementos do corpo da página-->
+    <!-- Cabeçalho, mostra o Pagamento no topo -->
+    <header class="header">
+      <h1>Pagamento</h1>
+    </header>
+
+    <!-- Opções de Pagamento, escolhe entre Pix ou cartão de crédito -->
+    <section class="opcoes-pagamento">
+      <label><input type="radio" name="pagamento" value="pix" onclick="mostrarOpcaoPagamento('pix')"> Pagar com Pix</label>
+      <label><input type="radio" name="pagamento" value="cartao" onclick="mostrarOpcaoPagamento('cartao')"> Pagar com Cartão de Crédito</label>
+
+      <!--Só aparece se o usuário escolheu Pix. Mostra um QR Code (imagem) e o valor a pagar.
+       Começa invisível por causa de style="display:none;"-->
+      <div id="pixOpcao" style="display:none;">
+        <p>Escaneie o QR Code abaixo para pagar:</p>
+        <img id="qrcode" class="qrcode-img" src="" alt="QR Code Pix">
+        <p id="valorPix"></p>
+      </div>
+
+      <!--Só aparece se o usuário escolheu cartão.
+       Mostra um campo para digitar o número do cartão-->
+      <div id="cartaoOpcao" style="display:none;">
+        <label>Número do Cartão:</label>
+        <input type="text" id="numeroCartao" placeholder="0000 0000 0000 0000">
+      </div>
+    </section>
+
+    <!-- Botão Finalizar -->
+    <section class="finalizar">
+      <button onclick="finalizarPagamento()">Finalizar</button>
+    </section>
+  </div>
+   
+  <script src="./script/script_tela4.js"></script>
+  
+</body>
+</html>
+
+

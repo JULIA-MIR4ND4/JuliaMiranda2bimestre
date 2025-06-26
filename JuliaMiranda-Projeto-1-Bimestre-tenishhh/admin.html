@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - Tênis de Vôlei xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</title>
+  <link rel="stylesheet" href="./styles/style_admin.css">
+</head>
+<body>
+  <div class="admin-container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>Painel Administrativo</h1>
+      <p>Bem-vindo, Administrador!</p>
+    </header>
+
+    <!-- Opções principais -->
+    <main class="admin-options">
+      <div class="option-card">
+        <h2>Fazer Compra</h2>
+        <p>Navegar pela loja normalmente como cliente</p>
+        <button onclick="irParaLoja()" class="btn-primary">Ir para a Loja</button>
+      </div>
+
+      <div class="option-card">
+        <h2>Gerenciar Sistema</h2>
+        <p>Editar produtos ou usuários do sistema</p>
+        <button onclick="mostrarOpcoesCrud()" class="btn-secondary">Gerenciar</button>
+      </div>
+    </main>
+
+    <!-- Opções de CRUD (inicialmente ocultas) -->
+    <div id="crudOptions" class="crud-options" style="display: none;">
+      <h3>O que você deseja gerenciar?</h3>
+      <div class="crud-buttons">
+        <button onclick="gerenciarProdutos()" class="btn-crud">Gerenciar Produtos</button>
+        <button onclick="gerenciarUsuarios()" class="btn-crud">Gerenciar Usuários</button>
+        <button onclick="ocultarOpcoesCrud()" class="btn-cancel">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Logout -->
+    <footer class="footer">
+      <button onclick="logout()" class="btn-logout">Sair</button>
+    </footer>
+  </div>
+
+  <script src="./script/script_admin.js"></script>
+</body>
+</html>

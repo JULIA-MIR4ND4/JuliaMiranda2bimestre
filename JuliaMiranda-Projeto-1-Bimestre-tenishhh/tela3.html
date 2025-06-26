@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confirmação de Pagamento</title>
+  <link rel="stylesheet" href="./styles/style_tela3.css"> <!--conecta o arquivo css que deixa essa página com um visual bonito-->
+</head>
+<body>
+  <div class="confirmacao-container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>Confirmação de Pagamento</h1>
+    </header>
+
+    <!-- Lista de Produtos, esse espaço vai ser preenchido com os produtos que o cliente
+      escolheu. Mostra nome, tamanho, quantidade e preço de cada item. -->
+    <section id="itensCarrinho" class="lista-produtos"></section>
+
+    <!-- Preço Final, js vai calcular -->
+    <section class="preco-final">
+      <h2>Preço Final: <span id="precoTotal">R$ 0,00</span></h2>
+    </section>
+
+    <!-- Botão Finalizar Pedido, ao clicar, ele chama a função finalizarPedido() no js-->
+    <footer class="acoes"> <!--área do rodapé da página-->
+      <button onclick="finalizarPedido()">Finalizar Pedido</button>
+    </footer>
+  </div>
+
+  <script src="./script/script_tela3.js"></script>
+</body>
+</html>

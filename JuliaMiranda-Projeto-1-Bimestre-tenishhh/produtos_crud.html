@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Produtos - Tênis de Vôlei</title>
+  <link rel="stylesheet" href="./styles/style_produtos_crud.css">
+</head>
+<body>
+  <div class="crud-container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>Gerenciar Produtos</h1>
+    </header>
+
+    <!-- Opções de ação -->
+    <div class="action-selector">
+      <h2>O que você deseja fazer?</h2>
+      <div class="action-buttons">
+        <button onclick="mostrarAdicionar()" class="btn-action">Adicionar Produto</button>
+        <button onclick="mostrarExcluir()" class="btn-action">Excluir Produto</button>
+        <button onclick="mostrarEditar()" class="btn-action">Editar Produto</button>
+      </div>
+    </div>
+
+    <!-- Seção Adicionar Produto -->
+    <div id="adicionarSection" class="form-section" style="display: none;">
+      <h3>Adicionar Novo Produto</h3>
+      <form id="adicionarForm">
+        <div class="campo">
+          <label for="nomeAdd">Nome do Produto:</label>
+          <input type="text" id="nomeAdd" required>
+        </div>
+        <div class="campo">
+          <label for="precoAdd">Preço (R$):</label>
+          <input type="number" id="precoAdd" step="0.01" required>
+        </div>
+        <div class="campo">
+          <label for="imagemAdd">Link da Imagem:</label>
+          <input type="text" id="imagemAdd" required>
+        </div>
+        <button type="submit" class="btn-submit">Adicionar Produto</button>
+        <button type="button" onclick="cancelarAcao()" class="btn-cancel">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Seção Excluir Produto -->
+    <div id="excluirSection" class="form-section" style="display: none;">
+      <h3>Excluir Produto</h3>
+      <div class="search-container">
+        <label for="buscarExcluir">Buscar produto por nome:</label>
+        <input type="text" id="buscarExcluir" placeholder="Digite o nome do produto">
+        <button onclick="buscarProdutoExcluir()" class="btn-search">Buscar</button>
+      </div>
+      
+      <div id="produtoExcluir" class="produto-info" style="display: none;">
+        <h4>Produto Encontrado:</h4>
+        <div id="infoProdutoExcluir"></div>
+        <button onclick="confirmarExclusao()" class="btn-delete">Excluir Produto</button>
+        <button onclick="cancelarAcao()" class="btn-cancel">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Seção Editar Produto -->
+    <div id="editarSection" class="form-section" style="display: none;">
+      <h3>Editar Produto</h3>
+      <div class="search-container">
+        <label for="buscarEditar">Buscar produto por nome:</label>
+        <input type="text" id="buscarEditar" placeholder="Digite o nome do produto">
+        <button onclick="buscarProdutoEditar()" class="btn-search">Buscar</button>
+      </div>
+      
+      <div id="produtoEditar" style="display: none;">
+        <h4>Editar Produto:</h4>
+        <form id="editarForm">
+          <div class="campo">
+            <label for="nomeEdit">Nome do Produto:</label>
+            <input type="text" id="nomeEdit" required>
+          </div>
+          <div class="campo">
+            <label for="precoEdit">Preço (R$):</label>
+            <input type="number" id="precoEdit" step="0.01" required>
+          </div>
+          <div class="campo">
+            <label for="imagemEdit">Link da Imagem:</label>
+            <input type="text" id="imagemEdit" required>
+          </div>
+          <button type="submit" class="btn-submit">Salvar Alterações</button>
+          <button type="button" onclick="cancelarAcao()" class="btn-cancel">Cancelar</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <button onclick="voltarAdmin()" class="btn-back">Voltar ao Painel</button>
+    </footer>
+  </div>
+
+  <script src="./script/script_produtos_crud.js"></script>
+</body>
+</html>

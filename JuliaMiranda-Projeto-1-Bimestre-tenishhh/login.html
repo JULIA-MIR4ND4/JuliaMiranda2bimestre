@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Tênis de Vôlei</title>
+  <link rel="stylesheet" href="./styles/style_login.css">
+</head>
+<body>
+  <div class="login-container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>Tênis de Vôlei</h1>
+      <p>Entre na sua conta ou crie uma nova</p>
+    </header>
+
+    <!-- Formulário de Login -->
+    <main class="login-form">
+      <div class="form-section">
+        <h2>Fazer Login</h2>
+        <form id="loginForm">
+          <div class="campo">
+            <label for="loginEmail">Email:</label>
+            <input type="email" id="loginEmail" required>
+          </div>
+          <div class="campo">
+            <label for="loginSenha">Senha:</label>
+            <input type="password" id="loginSenha" required>
+          </div>
+          <button type="submit">Entrar</button>
+        </form>
+      </div>
+
+      <div class="form-section">
+        <h2>Criar Conta</h2>
+        <form id="registerForm">
+          <div class="campo">
+            <label for="registerEmail">Email:</label>
+            <input type="email" id="registerEmail" required>
+          </div>
+          <div class="campo">
+            <label for="registerSenha">Senha:</label>
+            <input type="password" id="registerSenha" required>
+            <small>A senha deve ter pelo menos 6 caracteres</small>
+          </div>
+          <div class="campo">
+            <label for="confirmSenha">Confirmar Senha:</label>
+            <input type="password" id="confirmSenha" required>
+          </div>
+          <button type="submit">Criar Conta</button>
+        </form>
+      </div>
+    </main>
+
+    <!-- Botão voltar -->
+    <footer class="footer">
+      <button onclick="voltar()">Voltar à Página Inicial</button>
+    </footer>
+  </div>
+
+  <script src="./script/script_login.js"></script>
+</body>
+</html>

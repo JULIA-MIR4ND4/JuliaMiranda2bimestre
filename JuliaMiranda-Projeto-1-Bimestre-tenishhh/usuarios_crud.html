@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gerenciar Usuários - Tênis de Vôlei</title>
+  <link rel="stylesheet" href="./styles/style_usuarios_crud.css">
+</head>
+<body>
+  <div class="crud-container">
+    <!-- Cabeçalho -->
+    <header class="header">
+      <h1>Gerenciar Usuários</h1>
+    </header>
+
+    <!-- Seção de busca -->
+    <div class="search-section">
+      <h2>Buscar Usuário</h2>
+      <div class="search-container">
+        <label for="buscarUsuario">Buscar usuário por email:</label>
+        <input type="email" id="buscarUsuario" placeholder="Digite o email do usuário">
+        <button onclick="buscarUsuario()" class="btn-search">Buscar</button>
+      </div>
+    </div>
+
+    <!-- Seção de edição do usuário -->
+    <div id="usuarioSection" class="form-section" style="display: none;">
+      <h3>Informações do Usuário</h3>
+      <div id="infoUsuario" class="user-info"></div>
+      
+      <form id="editarUsuarioForm">
+        <div class="campo">
+          <label for="tipoUsuario">Tipo de Usuário:</label>
+          <select id="tipoUsuario" required>
+            <option value="cliente">Cliente</option>
+            <option value="adm">Administrador</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-submit">Salvar Alterações</button>
+        <button type="button" onclick="cancelarEdicao()" class="btn-cancel">Cancelar</button>
+      </form>
+    </div>
+
+    <!-- Rodapé -->
+    <footer class="footer">
+      <button onclick="voltarAdmin()" class="btn-back">Voltar ao Painel</button>
+    </footer>
+  </div>
+
+  <script src="./script/script_usuarios_crud.js"></script>
+</body>
+</html>
