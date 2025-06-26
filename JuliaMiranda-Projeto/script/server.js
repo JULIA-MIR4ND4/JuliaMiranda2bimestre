@@ -6,17 +6,18 @@ const path = require('path');
 
 const app = express();
 const PORT = 3000;
-const CSV_FILE = 'products.csv';
-const USERS_FILE = 'users.csv';
+// Caminhos absolutos para os arquivos CSV dentro da pasta JuliaMiranda-Projeto
+const CSV_FILE = path.join(__dirname, '../products.csv'); // Arquivo CSV de produtos
+const USERS_FILE = path.join(__dirname, '../users.csv'); // Arquivo CSV de usuários
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(express.static('.')); // Serve arquivos estáticos
+app.use(express.static(path.join(__dirname, '..'))); // Serve arquivos estáticos corretamente
 
 // Banco de dados em memória
-let products = [];
-let users = [];
-let nextId = 1;
+let products = []; // Produtos
+let users = []; // Usuários
+let nextId = 1; // Próximo ID
 
 // Função para carregar produtos do CSV
 function loadProductsFromCSV() {
@@ -43,12 +44,7 @@ function loadProductsFromCSV() {
             console.log('Produtos carregados do arquivo CSV');
         } else {
             // Cria arquivo CSV de produtos com dados iniciais
-            const initialData = `id,nome,preco,imagem
-1,ASICS Metarise 2 Paris,1300.00,imagens/asics metarise.jpeg
-2,Nike Giannis Immortality 3,560.00,imagens/giannis immortality.jpeg
-3,Nike Giannis Immortality 4,600.00,imagens/Nike Giannis.jpeg
-4,Nike Kyrie 7,1400.00,imagens/nike kyrie.jpeg
-5,Nike LeBron Witness 8,900.00,imagens/nike lebron.jpeg`;
+            const initialData = `id,nome,preco,imagem\n1,ASICS Metarise 2 Paris,1300.00,imagens/asics metarise.jpeg\n2,Nike Giannis Immortality 3,560.00,imagens/giannis immortality.jpeg\n3,Nike Giannis Immortality 4,600.00,imagens/Nike Giannis.jpeg\n4,Nike Kyrie 7,1400.00,imagens/nike kyrie.jpeg\n5,Nike LeBron Witness 8,900.00,imagens/nike lebron.jpeg`;
             
             fs.writeFileSync(CSV_FILE, initialData);
             nextId = 6;
@@ -238,13 +234,16 @@ app.post('/api/register', (req, res) => {
 // Login de usuário
 app.post('/api/login', (req, res) => {
     console.log("chegou")
-    const { email, senha } = req.body;
+    // Remove espaços extras do início/fim do email e senha
+    const email = req.body.email ? req.body.email.trim() : '';
+    const senha = req.body.senha ? req.body.senha.trim() : '';
 
     if (!email || !senha) {
         return res.status(400).json({ message: 'Email e senha são obrigatórios' });
     }
 
-    const user = users.find(u => u.email === email && u.senha === senha);
+    // Procura usuário ignorando espaços extras
+    const user = users.find(u => u.email.trim() === email && u.senha.trim() === senha);
     
     if (user) {
         res.json({ message: 'Login realizado com sucesso', email: user.email, tipo: user.tipo });
