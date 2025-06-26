@@ -4,7 +4,6 @@ function goToDetails(id) {
   }
 
   function goToCarrinho() {
-    // Sempre exige login para acessar o carrinho
     const userEmail = localStorage.getItem('userEmail');
     if (!userEmail) {
         alert('Você precisa fazer login para acessar o carrinho!');
