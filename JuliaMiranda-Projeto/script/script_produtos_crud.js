@@ -200,8 +200,17 @@ async function buscarProdutoEditar() {
         // Preencher formulário de edição
         document.getElementById('nomeEdit').value = produto.nome;
         document.getElementById('precoEdit').value = produto.preco;
-        document.getElementById('imagemEdit').value = produto.imagem;
-        
+        // Não tente preencher o campo file!
+        // Mostra a imagem atual ao lado do campo
+        let imgPreview = document.getElementById('imgPreviewEdit');
+        if (!imgPreview) {
+            imgPreview = document.createElement('img');
+            imgPreview.id = 'imgPreviewEdit';
+            imgPreview.style.maxWidth = '120px';
+            imgPreview.style.display = 'block';
+            document.getElementById('imagemEdit').parentNode.appendChild(imgPreview);
+        }
+        imgPreview.src = produto.imagem;
         document.getElementById('produtoEditar').style.display = 'block';
         
     } catch (error) {
