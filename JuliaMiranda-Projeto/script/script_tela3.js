@@ -46,7 +46,6 @@ window.onload = function () {
         window.location.href = 'login.html';
         return;
     }
-
     carregarCarrinho();
     exibirCarrinho();
 };
@@ -71,7 +70,7 @@ function exibirCarrinho() {
     }
 
     carrinho.forEach((item, index) => {
-        const precoUnitario = item.precoNumerico || parseFloat(item.preco.replace('R$', '').replace(',', '.'));
+        const precoUnitario = parseFloat(item.preco);
         const precoCalculado = precoUnitario * parseInt(item.quantidade);
         precoTotal += precoCalculado;
 
@@ -81,62 +80,37 @@ function exibirCarrinho() {
             <img src="${item.imagem}" alt="${item.nome}">
             <div class="produto-info">
                 <strong>${item.nome}</strong>
-                <span>Preço unitário: R$ ${precoUnitario.toFixed(2).replace('.', ',')}</span>
-                <span>Preço total: R$ ${precoCalculado.toFixed(2).replace('.', ',')}</span>
+                <span>Preço Total: R$ ${precoCalculado.toFixed(2).replace('.', ',')}</span>
+                <span>Quantidade: 
+                    <button onclick="alterarQuantidade(${index}, -1)">-</button>
+                    <span id="qtd-${index}">${item.quantidade}</span>
+                    <button onclick="alterarQuantidade(${index}, 1)">+</button>
+                </span>
                 <span>Tamanho: ${item.tamanho}</span>
-                <div class="quantidade-controls">
-                    <button onclick="diminuirQuantidade(${index})">-</button>
-                    <span>Qtd: ${item.quantidade}</span>
-                    <button onclick="aumentarQuantidade(${index})">+</button>
-                    <button class="remover-item" onclick="removerItem(${index})">Remover</button>
-                </div>
+                <button onclick="removerItem(${index})">Remover</button>
             </div>
         `;
         container.appendChild(produtoDiv);
     });
-
     document.getElementById('precoTotal').innerText = `R$ ${precoTotal.toFixed(2).replace('.', ',')}`;
 }
 
-function aumentarQuantidade(index) {
-    carrinho[index].quantidade++;
+function alterarQuantidade(index, delta) {
+    if (!carrinho[index]) return;
+    let novaQtd = parseInt(carrinho[index].quantidade) + delta;
+    if (novaQtd < 1) novaQtd = 1;
+    carrinho[index].quantidade = novaQtd;
     salvarCarrinho();
     exibirCarrinho();
 }
 
-function diminuirQuantidade(index) {
-    if (carrinho[index].quantidade > 1) {
-        carrinho[index].quantidade--;
-        salvarCarrinho();
-        exibirCarrinho();
-    } else {
-        if (confirm('Deseja remover este item do carrinho?')) {
-            removerItem(index);
-        }
-    }
-}
-
 function removerItem(index) {
-    if (confirm(`Tem certeza que deseja remover "${carrinho[index].nome}" do carrinho?`)) {
-        carrinho.splice(index, 1);
-        salvarCarrinho();
-        exibirCarrinho();
-        
-        if (carrinho.length === 0) {
-            alert('Carrinho vazio! Redirecionando para a página inicial.');
-            setTimeout(() => {
-                window.location.href = 'index.html';
-            }, 1500);
-        }
-    }
+    carrinho.splice(index, 1);
+    salvarCarrinho();
+    exibirCarrinho();
 }
 
 function finalizarPedido() {
-    if (carrinho.length === 0) {
-        alert('Seu carrinho está vazio!');
-        return;
-    }
-
     const precoFinalTexto = document.getElementById('precoTotal').innerText;
     localStorage.setItem('precoFinal', precoFinalTexto);
     window.location.href = 'tela4.html';

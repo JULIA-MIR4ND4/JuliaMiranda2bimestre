@@ -10,12 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(produto => {
-            // Exibe imagem, nome e preço
+            // Exibe apenas a imagem
             const img = document.getElementById('imagemTenis');
             img.src = produto.imagem;
             img.alt = produto.nome;
-            document.getElementById('nomeTenis').textContent = produto.nome;
-            document.getElementById('precoTenis').textContent = `R$ ${parseFloat(produto.preco).toFixed(2)}`;
         })
         .catch(err => {
             alert('Produto não encontrado!');
