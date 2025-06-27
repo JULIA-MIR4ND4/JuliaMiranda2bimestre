@@ -48,8 +48,8 @@ async function fazerLogin(email, senha) {
                 window.location.href = 'index.html';
             }
         } else {
-            if (data.message === 'Usuário não encontrado') {
-                alert('Usuário não encontrado. Por favor, crie uma conta primeiro.');
+            if (data.message === 'Usuário não encontrado' || data.message === 'Email ou senha incorretos') {
+                alert('Usuário não encontrado. Por favor, crie uma conta antes de fazer login.');
             } else {
                 alert(data.message || 'Email ou senha incorretos');
             }

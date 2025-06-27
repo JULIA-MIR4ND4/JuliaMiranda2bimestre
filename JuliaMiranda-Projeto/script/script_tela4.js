@@ -34,17 +34,19 @@ function validarCartao(numero) {
   // Calcula o código de verificação para o Pix. Junta tudo e monta o link da imagem do QR Code.
   function gerarQRCodePix() {
     const precoTexto = precoFinal;
-    const valor = precoTexto.replace("R$", "").replace(",", ".").trim();
-    const chavePix = 'telma.miranda@email.com';
-    const nomeRecebedor = 'Telma Miranda';
-    const cidade = 'SAO PAULO';
-    const descricao = 'Pagamento Tênis Vôlei';
-  
+    // Garante valor numérico com duas casas decimais
+    let valor = precoTexto.replace(/[^0-9,\.]/g, '').replace(',', '.');
+    valor = (parseFloat(valor) || 0).toFixed(2);
+    const chavePix = 'tenis.juh@email.com'; // Troque para a chave Pix real se necessário
+    const nomeRecebedor = 'TENIS DE VOLEI JUH'; // Máximo 25 caracteres, sem acento
+    const cidade = 'SAO PAULO'; // Máximo 15 caracteres, sem acento
+    const descricao = 'Pagamento Tenis Volei'; // sem acento
+
     function formatField(id, value) {
       const length = value.length.toString().padStart(2, '0');
       return id + length + value;
     }
-  
+
     let payloadSemCRC =
       formatField("00", "01") +
       formatField("26",
@@ -60,7 +62,7 @@ function validarCartao(numero) {
       formatField("60", cidade) +
       formatField("62", formatField("05", "*")) +
       "6304";
-  
+
     function crc16(str) {
       let crc = 0xFFFF;
       for (let c = 0; c < str.length; c++) {
@@ -76,7 +78,7 @@ function validarCartao(numero) {
       }
       return crc.toString(16).toUpperCase().padStart(4, '0');
     }
-  
+
     const payloadFinal = payloadSemCRC + crc16(payloadSemCRC);
     const qrCodeURL = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(payloadFinal)}&size=200x200`;
     document.getElementById('qrcode').src = qrCodeURL; // mostra o qrcode
